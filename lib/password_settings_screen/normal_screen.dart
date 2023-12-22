@@ -114,8 +114,8 @@ class _NormalScreenState extends State<NormalScreen> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(
-                            color: Colors.grey,
-                            width: 0.5,
+                            color: grey,
+                            width: 0.25,
                           ),
                         ),
                         child: Padding(
@@ -245,6 +245,92 @@ class _NormalScreenState extends State<NormalScreen> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: lightGreyShade,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 10,
+                  ),
+                  //HERE
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Settings',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      Container(
+                        width: containerWidth,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Digits',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: containerWidth,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Characters',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: containerWidth,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Symbols',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(
