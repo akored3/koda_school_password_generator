@@ -13,14 +13,14 @@ class EventStartPasswordGenerator extends PasswordEvent {
   const EventStartPasswordGenerator();
 }
 
-class EventGenerateColdPassword extends PasswordEvent {
-  const EventGenerateColdPassword();
+class EventGenerateWeakPassword extends PasswordEvent {
+  const EventGenerateWeakPassword();
 }
 
-class EventGenerateWarmPassword extends PasswordEvent {
-  const EventGenerateWarmPassword();
+class EventGenerateMediumPassword extends PasswordEvent {
+  const EventGenerateMediumPassword();
 }
 
-class EventGenerateHotPassword extends PasswordEvent {
-  const EventGenerateHotPassword();
+class EventGenerateStrongPassword extends PasswordEvent {
+  const EventGenerateStrongPassword();
 }

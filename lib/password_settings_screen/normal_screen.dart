@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:password_generator/bloc/password_bloc.dart';
 import 'package:password_generator/bloc/password_event.dart';
 import 'package:password_generator/constants.dart';
+import 'package:password_generator/service/password_generator.dart';
 import 'package:password_generator/utils/button.dart';
 
 class NormalScreen extends StatefulWidget {
@@ -13,32 +14,42 @@ class NormalScreen extends StatefulWidget {
 }
 
 class _NormalScreenState extends State<NormalScreen> {
+  late String password = 'Generated password.....';
+
+  late PasswordGenerator passwordGenerator;
+
+  @override
+  void initState() {
+    passwordGenerator = PasswordGenerator();
+    super.initState();
+  }
+
   //List of colors
   List<Color> sliderColors = [
-    Colors.grey,
-    Colors.grey,
-    Colors.grey,
+    grey,
+    grey,
+    grey,
   ];
 
   String passwordStrength = '';
 
   String _passwordStrength() {
-    if (sliderColors[0] == Colors.grey &&
-        sliderColors[1] == Colors.grey &&
-        sliderColors[2] == Colors.grey) {
+    if (sliderColors[0] == grey &&
+        sliderColors[1] == grey &&
+        sliderColors[2] == grey) {
       passwordStrength = 'Strength';
     } else if (sliderColors[0] == redShade &&
-        sliderColors[1] == Colors.grey &&
-        sliderColors[2] == Colors.grey) {
+        sliderColors[1] == grey &&
+        sliderColors[2] == grey) {
       passwordStrength = 'Weak';
     } else if (sliderColors[0] == orangeShade &&
         sliderColors[1] == orangeShade &&
-        sliderColors[2] == Colors.grey) {
+        sliderColors[2] == grey) {
       passwordStrength = 'Medium';
     } else if (sliderColors[0] == greenShade &&
         sliderColors[1] == greenShade &&
         sliderColors[2] == greenShade) {
-      passwordStrength = 'Strength';
+      passwordStrength = 'Strong';
     }
     return passwordStrength;
   }
@@ -73,7 +84,7 @@ class _NormalScreenState extends State<NormalScreen> {
                 height: 20,
               ),
               Container(
-                height: containerHeight * 0.35,
+                height: containerHeight * 0.30,
                 width: containerWidth,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -103,13 +114,32 @@ class _NormalScreenState extends State<NormalScreen> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(
-                            color: Colors.black,
+                            color: Colors.grey,
                             width: 0.5,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  password,
+                                  style: TextStyle(color: grey, fontSize: 12),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.copy),
+                                  color: grey,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
                       const SizedBox(
-                        height: 15,
+                        height: 25,
                       ),
                       Row(
                         children: [
@@ -118,14 +148,14 @@ class _NormalScreenState extends State<NormalScreen> {
                               if (details.primaryDelta! > 0) {
                                 setState(() {
                                   sliderColors[0] = redShade;
-                                  sliderColors[1] = Colors.grey;
-                                  sliderColors[2] = Colors.grey;
+                                  sliderColors[1] = grey;
+                                  sliderColors[2] = grey;
                                 });
                               } else {
                                 setState(() {
-                                  sliderColors[0] = Colors.grey;
-                                  sliderColors[1] = Colors.grey;
-                                  sliderColors[2] = Colors.grey;
+                                  sliderColors[0] = grey;
+                                  sliderColors[1] = grey;
+                                  sliderColors[2] = grey;
                                 });
                               }
                             },
@@ -147,13 +177,13 @@ class _NormalScreenState extends State<NormalScreen> {
                                 setState(() {
                                   sliderColors[0] = orangeShade;
                                   sliderColors[1] = orangeShade;
-                                  sliderColors[2] = Colors.grey;
+                                  sliderColors[2] = grey;
                                 });
                               } else {
                                 setState(() {
                                   sliderColors[0] = redShade;
-                                  sliderColors[1] = Colors.grey;
-                                  sliderColors[2] = Colors.grey;
+                                  sliderColors[1] = grey;
+                                  sliderColors[2] = grey;
                                 });
                               }
                             },
@@ -181,7 +211,7 @@ class _NormalScreenState extends State<NormalScreen> {
                                 setState(() {
                                   sliderColors[0] = orangeShade;
                                   sliderColors[1] = orangeShade;
-                                  sliderColors[2] = Colors.grey;
+                                  sliderColors[2] = grey;
                                 });
                               }
                             },
@@ -218,12 +248,39 @@ class _NormalScreenState extends State<NormalScreen> {
                 ),
               ),
               const SizedBox(
-                height: 50,
+                height: 60,
               ),
               BouncingButton(
-                onTap: () {},
+                onTap: () {
+                  String generatedPassword;
+                  if (sliderColors[0] == redShade &&
+                      sliderColors[1] == grey &&
+                      sliderColors[2] == grey) {
+                    generatedPassword =
+                        passwordGenerator.generateWeakPassword();
+                    setState(() {
+                      password = generatedPassword;
+                    });
+                  } else if (sliderColors[0] == orangeShade &&
+                      sliderColors[1] == orangeShade &&
+                      sliderColors[2] == grey) {
+                    generatedPassword =
+                        passwordGenerator.generateMediumPassword();
+                    setState(() {
+                      password = generatedPassword;
+                    });
+                  } else if (sliderColors[0] == greenShade &&
+                      sliderColors[1] == greenShade &&
+                      sliderColors[2] == greenShade) {
+                    generatedPassword =
+                        passwordGenerator.generateStrongPassword();
+                    setState(() {
+                      password = generatedPassword;
+                    });
+                  }
+                },
                 text: 'Generate Password',
-              )
+              ),
             ],
           );
         }),

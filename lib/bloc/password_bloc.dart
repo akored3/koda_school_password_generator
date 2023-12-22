@@ -15,19 +15,19 @@ class PasswordGeneratorBloc
       emit(const PasswordGeneratorOnState());
     });
 
-    on<EventGenerateColdPassword>((event, emit) {
+    on<EventGenerateWeakPassword>((event, emit) {
       provider.generateWeakPassword();
-      emit(const GeneratedPasswordState());
+      emit(state);
     });
 
-    on<EventGenerateWarmPassword>((event, emit) {
+    on<EventGenerateMediumPassword>((event, emit) {
       provider.generateMediumPassword();
-      emit(const GeneratedPasswordState());
+      emit(state);
     });
 
-    on<EventGenerateHotPassword>((event, emit) {
+    on<EventGenerateStrongPassword>((event, emit) {
       provider.generateStrongPassword();
-      emit(const GeneratedPasswordState());
+      emit(state);
     });
   }
 }
