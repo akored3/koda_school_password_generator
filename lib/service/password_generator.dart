@@ -1,7 +1,6 @@
 import 'dart:math';
 
 class PasswordGenerator {
-  //include a function that removes digits from a string that has digits
   static const _lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
   static const _uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   static const _numericChars = '0123456789';
