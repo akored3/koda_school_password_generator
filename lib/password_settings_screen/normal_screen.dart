@@ -55,7 +55,7 @@ class _NormalScreenState extends State<NormalScreen> {
     return passwordStrength;
   }
 
-  List<bool> switchValues = [true, true, true];
+  List<bool> switchValues = [false, false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -356,14 +356,16 @@ class _NormalScreenState extends State<NormalScreen> {
                               const Text(
                                 'Symbols',
                                 style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                               CupertinoSwitch(
                                   value: switchValues[2],
                                   activeColor: Colors.purple,
                                   onChanged: (bool value) {
                                     setState(() {
-                                      switchValues[0] = value;
+                                      switchValues[2] = value;
                                     });
                                   })
                             ],
@@ -387,7 +389,9 @@ class _NormalScreenState extends State<NormalScreen> {
                       sliderColors[1] == grey &&
                       sliderColors[2] == grey) {
                     generatedPassword = passwordGenerator.generateWeakPassword(
-                        includeDigits: switchValues[0]);
+                      includeDigits: switchValues[0],
+                      includeSymbols: switchValues[0],
+                    );
                     setState(() {
                       password = generatedPassword;
                     });
@@ -397,6 +401,7 @@ class _NormalScreenState extends State<NormalScreen> {
                     generatedPassword =
                         passwordGenerator.generateMediumPassword(
                       includeDigits: switchValues[0],
+                      includeSymbols: switchValues[0],
                     );
                     setState(() {
                       password = generatedPassword;
@@ -404,8 +409,11 @@ class _NormalScreenState extends State<NormalScreen> {
                   } else if (sliderColors[0] == greenShade &&
                       sliderColors[1] == greenShade &&
                       sliderColors[2] == greenShade) {
-                    generatedPassword = passwordGenerator
-                        .generateStrongPassword(includeDigits: switchValues[0]);
+                    generatedPassword =
+                        passwordGenerator.generateStrongPassword(
+                      includeDigits: switchValues[0],
+                      includeSymbols: switchValues[0],
+                    );
                     setState(() {
                       password = generatedPassword;
                     });
