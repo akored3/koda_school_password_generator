@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:password_generator/bloc/password_bloc.dart';
@@ -53,6 +54,8 @@ class _NormalScreenState extends State<NormalScreen> {
     }
     return passwordStrength;
   }
+
+  List<bool> switchValues = [true, true, true];
 
   @override
   Widget build(BuildContext context) {
@@ -145,17 +148,23 @@ class _NormalScreenState extends State<NormalScreen> {
                         children: [
                           GestureDetector(
                             onHorizontalDragUpdate: (details) {
+                              String generatedPassword;
+
                               if (details.primaryDelta! > 0) {
+                                generatedPassword =
+                                    passwordGenerator.generateWeakPassword();
                                 setState(() {
                                   sliderColors[0] = redShade;
                                   sliderColors[1] = grey;
                                   sliderColors[2] = grey;
+                                  password = generatedPassword;
                                 });
                               } else {
                                 setState(() {
                                   sliderColors[0] = grey;
                                   sliderColors[1] = grey;
                                   sliderColors[2] = grey;
+                                  password = 'Generated password.....';
                                 });
                               }
                             },
@@ -173,17 +182,23 @@ class _NormalScreenState extends State<NormalScreen> {
                           ),
                           GestureDetector(
                             onHorizontalDragUpdate: (details) {
+                              String generatedPassword;
                               if (details.primaryDelta! > 0) {
+                                generatedPassword =
+                                    passwordGenerator.generateMediumPassword();
                                 setState(() {
                                   sliderColors[0] = orangeShade;
                                   sliderColors[1] = orangeShade;
                                   sliderColors[2] = grey;
+                                  password = generatedPassword;
                                 });
                               } else {
                                 setState(() {
                                   sliderColors[0] = redShade;
                                   sliderColors[1] = grey;
                                   sliderColors[2] = grey;
+                                  password =
+                                      passwordGenerator.generateWeakPassword();
                                 });
                               }
                             },
@@ -201,17 +216,22 @@ class _NormalScreenState extends State<NormalScreen> {
                           ),
                           GestureDetector(
                             onHorizontalDragUpdate: (details) {
+                              String generatedPassword =
+                                  passwordGenerator.generateStrongPassword();
                               if (details.primaryDelta! > 0) {
                                 setState(() {
                                   sliderColors[0] = greenShade;
                                   sliderColors[1] = greenShade;
                                   sliderColors[2] = greenShade;
+                                  password = generatedPassword;
                                 });
                               } else {
                                 setState(() {
                                   sliderColors[0] = orangeShade;
                                   sliderColors[1] = orangeShade;
                                   sliderColors[2] = grey;
+                                  password = passwordGenerator
+                                      .generateMediumPassword();
                                 });
                               }
                             },
@@ -270,16 +290,24 @@ class _NormalScreenState extends State<NormalScreen> {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Digits',
                                 style: TextStyle(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
+                              CupertinoSwitch(
+                                  value: switchValues[0],
+                                  activeColor: Colors.purple,
+                                  onChanged: (bool value) {
+                                    setState(() {
+                                      switchValues[0] = value;
+                                    });
+                                  })
                             ],
                           ),
                         ),
@@ -291,16 +319,24 @@ class _NormalScreenState extends State<NormalScreen> {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Characters',
                                 style: TextStyle(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
+                              CupertinoSwitch(
+                                  value: switchValues[1],
+                                  activeColor: Colors.purple,
+                                  onChanged: (bool value) {
+                                    setState(() {
+                                      switchValues[1] = value;
+                                    });
+                                  })
                             ],
                           ),
                         ),
@@ -312,16 +348,24 @@ class _NormalScreenState extends State<NormalScreen> {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
                         ),
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 10, right: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Symbols',
                                 style: TextStyle(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
+                              CupertinoSwitch(
+                                  value: switchValues[2],
+                                  activeColor: Colors.purple,
+                                  onChanged: (bool value) {
+                                    setState(() {
+                                      switchValues[2] = value;
+                                    });
+                                  })
                             ],
                           ),
                         ),
