@@ -334,7 +334,7 @@ class _NormalScreenState extends State<NormalScreen> {
                                   activeColor: Colors.purple,
                                   onChanged: (bool value) {
                                     setState(() {
-                                      switchValues[1] = value;
+                                      switchValues[0] = value;
                                     });
                                   })
                             ],
@@ -363,7 +363,7 @@ class _NormalScreenState extends State<NormalScreen> {
                                   activeColor: Colors.purple,
                                   onChanged: (bool value) {
                                     setState(() {
-                                      switchValues[2] = value;
+                                      switchValues[0] = value;
                                     });
                                   })
                             ],
@@ -386,8 +386,8 @@ class _NormalScreenState extends State<NormalScreen> {
                   if (sliderColors[0] == redShade &&
                       sliderColors[1] == grey &&
                       sliderColors[2] == grey) {
-                    generatedPassword =
-                        passwordGenerator.generateWeakPassword();
+                    generatedPassword = passwordGenerator.generateWeakPassword(
+                        includeDigits: switchValues[0]);
                     setState(() {
                       password = generatedPassword;
                     });
@@ -395,15 +395,17 @@ class _NormalScreenState extends State<NormalScreen> {
                       sliderColors[1] == orangeShade &&
                       sliderColors[2] == grey) {
                     generatedPassword =
-                        passwordGenerator.generateMediumPassword();
+                        passwordGenerator.generateMediumPassword(
+                      includeDigits: switchValues[0],
+                    );
                     setState(() {
                       password = generatedPassword;
                     });
                   } else if (sliderColors[0] == greenShade &&
                       sliderColors[1] == greenShade &&
                       sliderColors[2] == greenShade) {
-                    generatedPassword =
-                        passwordGenerator.generateStrongPassword();
+                    generatedPassword = passwordGenerator
+                        .generateStrongPassword(includeDigits: switchValues[0]);
                     setState(() {
                       password = generatedPassword;
                     });
