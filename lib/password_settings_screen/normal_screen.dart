@@ -6,6 +6,7 @@ import 'package:password_generator/bloc/password_event.dart';
 import 'package:password_generator/constants.dart';
 import 'package:password_generator/service/password_generator.dart';
 import 'package:password_generator/utils/button.dart';
+import 'package:password_generator/widgets/charater_settings.dart';
 
 class NormalScreen extends StatefulWidget {
   const NormalScreen({super.key});
@@ -56,6 +57,8 @@ class _NormalScreenState extends State<NormalScreen> {
   }
 
   List<bool> switchValues = [false, false, false];
+  bool get includeDigits => switchValues[0];
+  bool get includeSymbols => switchValues[2];
 
   @override
   Widget build(BuildContext context) {
@@ -283,95 +286,36 @@ class _NormalScreenState extends State<NormalScreen> {
                           fontSize: 18,
                         ),
                       ),
-                      Container(
-                        width: containerWidth,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                'Digits',
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                              ),
-                              CupertinoSwitch(
-                                  value: switchValues[0],
-                                  activeColor: Colors.purple,
-                                  onChanged: (bool value) {
-                                    setState(() {
-                                      switchValues[0] = value;
-                                    });
-                                  })
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: containerWidth,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                'Characters',
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                              ),
-                              CupertinoSwitch(
-                                  value: switchValues[1],
-                                  activeColor: Colors.purple,
-                                  onChanged: (bool value) {
-                                    setState(() {
-                                      switchValues[0] = value;
-                                    });
-                                  })
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: containerWidth,
-                        height: 60,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                'Symbols',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              CupertinoSwitch(
-                                  value: switchValues[2],
-                                  activeColor: Colors.purple,
-                                  onChanged: (bool value) {
-                                    setState(() {
-                                      switchValues[2] = value;
-                                    });
-                                  })
-                            ],
-                          ),
-                        ),
-                      ),
+                      CharacterSettings(
+                          containerWidth: containerWidth,
+                          containerHeight: 60,
+                          label: 'Digits',
+                          switchValue: switchValues[0],
+                          onSwitchChanged: (bool value) {
+                            setState(() {
+                              switchValues[0] = value;
+                            });
+                          }),
+                      CharacterSettings(
+                          containerWidth: containerWidth,
+                          containerHeight: 60,
+                          label: 'Characters',
+                          switchValue: switchValues[1],
+                          onSwitchChanged: (bool value) {
+                            setState(() {
+                              switchValues[1] = value;
+                            });
+                          }),
+                      CharacterSettings(
+                          containerWidth: containerWidth,
+                          containerHeight: 60,
+                          label: 'Symbols',
+                          switchValue: switchValues[2],
+                          onSwitchChanged: (bool value) {
+                            setState(() {
+                              switchValues[2] = value;
+                            });
+                          }),
                       const SizedBox(
                         height: 5,
                       ),
@@ -383,6 +327,7 @@ class _NormalScreenState extends State<NormalScreen> {
                 height: 60,
               ),
               BouncingButton(
+                //is there a way to use for loop to reduce this function?
                 onTap: () {
                   String generatedPassword;
                   if (sliderColors[0] == redShade &&
@@ -390,7 +335,7 @@ class _NormalScreenState extends State<NormalScreen> {
                       sliderColors[2] == grey) {
                     generatedPassword = passwordGenerator.generateWeakPassword(
                       includeDigits: switchValues[0],
-                      includeSymbols: switchValues[0],
+                      includeSymbols: switchValues[2],
                     );
                     setState(() {
                       password = generatedPassword;
