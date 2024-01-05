@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:password_generator/bloc/password_bloc.dart';
@@ -72,7 +71,7 @@ class _NormalScreenState extends State<NormalScreen> {
             Icons.arrow_back,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: white,
         elevation: 0,
       ),
       body: Padding(
@@ -147,6 +146,7 @@ class _NormalScreenState extends State<NormalScreen> {
                       const SizedBox(
                         height: 25,
                       ),
+                      //SLIDER
                       Row(
                         children: [
                           GestureDetector(
@@ -155,7 +155,11 @@ class _NormalScreenState extends State<NormalScreen> {
 
                               if (details.primaryDelta! > 0) {
                                 generatedPassword =
-                                    passwordGenerator.generateWeakPassword();
+                                    passwordGenerator.generateWeakPassword(
+                                  includeDigits: switchValues[0],
+                                  includeCharacters: switchValues[1],
+                                  includeSymbols: switchValues[2],
+                                );
                                 setState(() {
                                   sliderColors[0] = redShade;
                                   sliderColors[1] = grey;
@@ -188,7 +192,11 @@ class _NormalScreenState extends State<NormalScreen> {
                               String generatedPassword;
                               if (details.primaryDelta! > 0) {
                                 generatedPassword =
-                                    passwordGenerator.generateMediumPassword();
+                                    passwordGenerator.generateMediumPassword(
+                                  includeDigits: switchValues[0],
+                                  includeCharacters: switchValues[1],
+                                  includeSymbols: switchValues[2],
+                                );
                                 setState(() {
                                   sliderColors[0] = orangeShade;
                                   sliderColors[1] = orangeShade;
@@ -201,7 +209,11 @@ class _NormalScreenState extends State<NormalScreen> {
                                   sliderColors[1] = grey;
                                   sliderColors[2] = grey;
                                   password =
-                                      passwordGenerator.generateWeakPassword();
+                                      passwordGenerator.generateWeakPassword(
+                                    includeDigits: switchValues[0],
+                                    includeCharacters: switchValues[1],
+                                    includeSymbols: switchValues[2],
+                                  );
                                 });
                               }
                             },
@@ -220,7 +232,11 @@ class _NormalScreenState extends State<NormalScreen> {
                           GestureDetector(
                             onHorizontalDragUpdate: (details) {
                               String generatedPassword =
-                                  passwordGenerator.generateStrongPassword();
+                                  passwordGenerator.generateStrongPassword(
+                                includeDigits: switchValues[0],
+                                includeCharacters: switchValues[1],
+                                includeSymbols: switchValues[2],
+                              );
                               if (details.primaryDelta! > 0) {
                                 setState(() {
                                   sliderColors[0] = greenShade;
@@ -233,8 +249,12 @@ class _NormalScreenState extends State<NormalScreen> {
                                   sliderColors[0] = orangeShade;
                                   sliderColors[1] = orangeShade;
                                   sliderColors[2] = grey;
-                                  password = passwordGenerator
-                                      .generateMediumPassword();
+                                  password =
+                                      passwordGenerator.generateMediumPassword(
+                                    includeDigits: switchValues[0],
+                                    includeCharacters: switchValues[1],
+                                    includeSymbols: switchValues[2],
+                                  );
                                 });
                               }
                             },
@@ -262,6 +282,7 @@ class _NormalScreenState extends State<NormalScreen> {
               const SizedBox(
                 height: 15,
               ),
+              //SETTINGS
               Container(
                 height: containerHeight * 0.40,
                 width: 400,
@@ -274,7 +295,6 @@ class _NormalScreenState extends State<NormalScreen> {
                     horizontal: 10,
                     vertical: 10,
                   ),
-                  //HERE
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -327,7 +347,6 @@ class _NormalScreenState extends State<NormalScreen> {
                 height: 60,
               ),
               BouncingButton(
-                //is there a way to use for loop to reduce this function?
                 onTap: () {
                   String generatedPassword;
                   if (sliderColors[0] == redShade &&
@@ -335,6 +354,7 @@ class _NormalScreenState extends State<NormalScreen> {
                       sliderColors[2] == grey) {
                     generatedPassword = passwordGenerator.generateWeakPassword(
                       includeDigits: switchValues[0],
+                      includeCharacters: switchValues[1],
                       includeSymbols: switchValues[2],
                     );
                     setState(() {
@@ -357,7 +377,7 @@ class _NormalScreenState extends State<NormalScreen> {
                     generatedPassword =
                         passwordGenerator.generateStrongPassword(
                       includeDigits: switchValues[0],
-                      includeSymbols: switchValues[0],
+                      includeSymbols: switchValues[2],
                     );
                     setState(() {
                       password = generatedPassword;

@@ -44,6 +44,7 @@ class _SliderXState extends State<SliderX> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  //write this into a component that can be re used in this parent
                   GestureDetector(
                     onHorizontalDragUpdate: (details) {
                       if (details.primaryDelta! > 0) {

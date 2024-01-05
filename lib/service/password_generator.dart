@@ -10,12 +10,14 @@ class PasswordGenerator {
     int length = 8,
     bool includeDigits = false,
     bool includeSymbols = false,
+    bool includeCharacters = false,
   }) {
     return _generatePassword(
       length,
-      _lowercaseChars,
+      '',
       includeDigits,
       includeSymbols,
+      includeCharacters,
     ).toString();
   }
 
@@ -23,12 +25,14 @@ class PasswordGenerator {
     int length = 12,
     bool includeDigits = false,
     bool includeSymbols = false,
+    bool includeCharacters = false,
   }) {
     return _generatePassword(
       length,
-      _lowercaseChars + _uppercaseChars,
+      '',
       includeDigits,
       includeSymbols,
+      includeCharacters,
     ).toString();
   }
 
@@ -36,12 +40,14 @@ class PasswordGenerator {
     int length = 16,
     bool includeDigits = false,
     bool includeSymbols = false,
+    bool includeCharacters = false,
   }) {
     return _generatePassword(
       length,
-      _lowercaseChars + _uppercaseChars + _numericChars + _specialChars,
+      '',
       includeDigits,
       includeSymbols,
+      includeCharacters,
     ).toString();
   }
 
@@ -50,9 +56,14 @@ class PasswordGenerator {
     String characterSet,
     bool includeDigits,
     bool includeSymbols,
+    bool includeCharacters,
   ) {
     final random = Random();
     final password = StringBuffer();
+
+    if (includeCharacters) {
+      characterSet += _lowercaseChars + _uppercaseChars;
+    }
 
     if (includeDigits) {
       characterSet += _numericChars;
@@ -62,8 +73,12 @@ class PasswordGenerator {
     }
 
     for (int i = 0; i < length; i++) {
-      final index = random.nextInt(characterSet.length);
-      password.write(characterSet[index]);
+      if (characterSet == '') {
+        return 'No settings turned on';
+      } else {
+        final index = random.nextInt(characterSet.length);
+        password.write(characterSet[index]);
+      }
     }
     return password.toString();
   }
