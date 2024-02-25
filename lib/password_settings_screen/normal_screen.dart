@@ -171,7 +171,7 @@ class _NormalScreenState extends State<NormalScreen> {
                                   sliderColors[0] = grey;
                                   sliderColors[1] = grey;
                                   sliderColors[2] = grey;
-                                  password = 'Generated password.....';
+                                  password = 'Generate password.....';
                                 });
                               }
                             },

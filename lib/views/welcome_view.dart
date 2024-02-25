@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:password_generator/bloc/password_bloc.dart';
-import 'package:password_generator/bloc/password_event.dart';
+import 'package:password_generator/password_settings_screen/riverpod_normal_screen.dart';
 import 'package:password_generator/utils/button.dart';
 import 'package:password_generator/utils/dummy_indicators.dart';
 
@@ -30,9 +28,10 @@ class Welcome extends StatelessWidget {
             const SizedBox(height: 20),
             BouncingButton(
               onTap: () {
-                context
-                    .read<PasswordGeneratorBloc>()
-                    .add(const EventStartPasswordGenerator());
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RiverpodNormalScreen()));
               },
               text: 'Continue',
             ),

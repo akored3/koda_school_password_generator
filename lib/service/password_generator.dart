@@ -6,12 +6,11 @@ class PasswordGenerator {
   static const _numericChars = '0123456789';
   static const _specialChars = '!@#\$%^&*()-_=+[]{}|;:,.<>?';
 
-  String generateWeakPassword({
-    int length = 8,
-    bool includeDigits = false,
-    bool includeSymbols = false,
-    bool includeCharacters = false,
-  }) {
+  String generateWeakPassword(
+      {int length = 8,
+      bool includeDigits = false,
+      bool includeSymbols = false,
+      bool includeCharacters = false}) {
     return _generatePassword(
       length,
       '',
