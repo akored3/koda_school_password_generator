@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:password_generator/constants.dart';
-import 'package:password_generator/password_settings_screen/riverpod_normal_screen.dart';
 import 'package:password_generator/utils/button.dart';
 import 'package:password_generator/utils/dummy_indicators.dart';
+import 'package:password_generator/views/password_generator_view.dart';
 
 class Welcome extends StatelessWidget {
   const Welcome({Key? key}) : super(key: key);
@@ -32,7 +32,7 @@ class Welcome extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => RiverpodNormalScreen()));
+                        builder: (context) => const PasswordGeneratorView()));
               },
               text: 'Continue',
               color: blueShade,

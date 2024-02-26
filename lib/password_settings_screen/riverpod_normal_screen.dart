@@ -314,7 +314,7 @@ class RiverpodNormalScreen extends ConsumerWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
                           )),
-                      CharacterSettingsPartTwo(
+                      CharacterSettings(
                           containerWidth: containerWidth,
                           containerHeight: 60,
                           label: 'Digits',
@@ -324,7 +324,7 @@ class RiverpodNormalScreen extends ConsumerWidget {
                                 ref.watch(digitSwitchProvider.notifier);
                             switchNotifier.toggleDigitSwitch();
                           }),
-                      CharacterSettingsPartTwo(
+                      CharacterSettings(
                           containerWidth: containerWidth,
                           containerHeight: 60,
                           label: 'Characters',
@@ -334,7 +334,7 @@ class RiverpodNormalScreen extends ConsumerWidget {
                                 ref.watch(characterSwitchProvider.notifier);
                             switchNotifier.toggleCharacterSwitch();
                           }),
-                      CharacterSettingsPartTwo(
+                      CharacterSettings(
                           containerWidth: containerWidth,
                           containerHeight: 60,
                           label: 'Symbols',

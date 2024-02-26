@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:password_generator/password_settings_screen/normal_screen.dart';
+import 'package:password_generator/password_settings_screen/riverpod_normal_screen.dart';
 import 'package:password_generator/password_settings_screen/small_screens.dart';
 
 class PasswordGeneratorView extends StatefulWidget {
@@ -17,7 +17,7 @@ class _PasswordGeneratorViewState extends State<PasswordGeneratorView> {
         if (constraints.maxHeight < 600) {
           return const SmallScreen();
         } else {
-          return const NormalScreen();
+          return RiverpodNormalScreen();
         }
       },
     );
