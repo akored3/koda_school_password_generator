@@ -1,12 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:password_generator/constants.dart';
 import 'package:password_generator/providers/password_provider.dart';
 import 'package:password_generator/providers/slider_providers.dart';
 import 'package:password_generator/providers/switch_providers.dart';
 import 'package:password_generator/service/password_generator.dart';
+import 'package:password_generator/utils/button.dart';
+import 'package:password_generator/widgets/charater_settings.dart';
 
 class RiverpodNormalScreen extends ConsumerWidget {
   RiverpodNormalScreen({super.key});
@@ -52,7 +52,9 @@ class RiverpodNormalScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(
               Icons.arrow_back,
             )),
@@ -293,22 +295,101 @@ class RiverpodNormalScreen extends ConsumerWidget {
               //SETTINGS
               Container(
                 height: containerHeight * 0.40,
-                width: 400,
+                width: containerWidth,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: lightGreyShade,
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
                     horizontal: 10,
                     vertical: 10,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text('Settings',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18,
+                          )),
+                      CharacterSettingsPartTwo(
+                          containerWidth: containerWidth,
+                          containerHeight: 60,
+                          label: 'Digits',
+                          switchValue: digitSwitchValue,
+                          turnOnSwitch: () {
+                            final switchNotifier =
+                                ref.watch(digitSwitchProvider.notifier);
+                            switchNotifier.toggleDigitSwitch();
+                          }),
+                      CharacterSettingsPartTwo(
+                          containerWidth: containerWidth,
+                          containerHeight: 60,
+                          label: 'Characters',
+                          switchValue: characterSwitchValue,
+                          turnOnSwitch: () {
+                            final switchNotifier =
+                                ref.watch(characterSwitchProvider.notifier);
+                            switchNotifier.toggleCharacterSwitch();
+                          }),
+                      CharacterSettingsPartTwo(
+                          containerWidth: containerWidth,
+                          containerHeight: 60,
+                          label: 'Symbols',
+                          switchValue: specialCharacterSwitchValue,
+                          turnOnSwitch: () {
+                            final switchNotifier = ref
+                                .watch(specialCharacterSwitchProvider.notifier);
+                            switchNotifier.toggleSpecialCharacterSwitch();
+                          }),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                    ],
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 60,
+              ),
+              BouncingButton(
+                onTap: () {
+                  if (firstSliderColor == grey &&
+                      secondSliderColor == grey &&
+                      thirdSliderColor == grey) {
+                    password = ref.watch(passwordProvider);
+                  } else if (firstSliderColor == redShade &&
+                      secondSliderColor == grey &&
+                      thirdSliderColor == grey) {
+                    password = ref.read(passwordProvider.notifier).showPassword(
+                        passwordGenerator.generateWeakPassword(
+                            includeDigits: digitSwitchValue,
+                            includeCharacters: characterSwitchValue,
+                            includeSymbols: specialCharacterSwitchValue));
+                  } else if (firstSliderColor == orangeShade &&
+                      secondSliderColor == orangeShade &&
+                      thirdSliderColor == grey) {
+                    password = ref.read(passwordProvider.notifier).showPassword(
+                        passwordGenerator.generateMediumPassword(
+                            includeDigits: digitSwitchValue,
+                            includeCharacters: characterSwitchValue,
+                            includeSymbols: specialCharacterSwitchValue));
+                  } else if (firstSliderColor == greenShade &&
+                      secondSliderColor == greenShade &&
+                      thirdSliderColor == greenShade) {
+                    password = ref.read(passwordProvider.notifier).showPassword(
+                        passwordGenerator.generateStrongPassword(
+                            includeDigits: digitSwitchValue,
+                            includeCharacters: characterSwitchValue,
+                            includeSymbols: specialCharacterSwitchValue));
+                  }
+                },
+                text: 'Generate Password',
+                color: Colors.purple,
+                borderRadius: 10,
+              )
             ],
           );
         }),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:password_generator/constants.dart';
 import 'package:password_generator/password_settings_screen/riverpod_normal_screen.dart';
 import 'package:password_generator/utils/button.dart';
 import 'package:password_generator/utils/dummy_indicators.dart';
@@ -34,6 +35,8 @@ class Welcome extends StatelessWidget {
                         builder: (context) => RiverpodNormalScreen()));
               },
               text: 'Continue',
+              color: blueShade,
+              borderRadius: 25,
             ),
             const SizedBox(height: 20),
           ],

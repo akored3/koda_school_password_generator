@@ -385,6 +385,8 @@ class _NormalScreenState extends State<NormalScreen> {
                   }
                 },
                 text: 'Generate Password',
+                color: purple,
+                borderRadius: 25,
               ),
             ],
           );

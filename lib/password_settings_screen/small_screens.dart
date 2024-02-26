@@ -68,7 +68,12 @@ class _SmallScreenState extends State<SmallScreen> {
               const SizedBox(
                 height: 40,
               ),
-              BouncingButton(onTap: () {}, text: 'Generate Password')
+              BouncingButton(
+                onTap: () {},
+                text: 'Generate Password',
+                color: purple,
+                borderRadius: 10,
+              )
             ],
           );
         }),

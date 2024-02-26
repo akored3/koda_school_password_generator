@@ -55,10 +55,14 @@ class ButtonImageFb1 extends StatelessWidget {
 class BouncingButton extends StatefulWidget {
   final String text;
   final VoidCallback onTap;
+  final Color color;
+  final double borderRadius;
   const BouncingButton({
     super.key,
     required this.onTap,
     required this.text,
+    required this.color,
+    required this.borderRadius,
   });
 
   @override
@@ -109,8 +113,8 @@ class _BouncingButtonState extends State<BouncingButton>
           width: 400,
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            color: Colors.blue,
+            borderRadius: BorderRadius.circular(widget.borderRadius),
+            color: widget.color,
           ),
           //says undefined name 'text
           child: Text(widget.text,

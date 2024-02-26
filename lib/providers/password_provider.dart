@@ -3,8 +3,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PasswordProvider extends StateNotifier<String?> {
   PasswordProvider() : super('Generate Password....');
-  void showPassword(String? newText) {
-    state = newText;
+  String showPassword(String newText) {
+    return state = newText;
   }
 
   void resetPassword() {
