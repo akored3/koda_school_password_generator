@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:password_generator/constants.dart';
+import 'package:password_generator/generated_password_screens/normal_generated_password_screen.dart';
 import 'package:password_generator/providers/password_provider.dart';
 import 'package:password_generator/providers/slider_providers.dart';
 import 'package:password_generator/providers/switch_providers.dart';
@@ -8,8 +9,8 @@ import 'package:password_generator/service/password_generator.dart';
 import 'package:password_generator/utils/button.dart';
 import 'package:password_generator/widgets/charater_settings.dart';
 
-class RiverpodNormalScreen extends ConsumerWidget {
-  RiverpodNormalScreen({super.key});
+class NormalScreen extends ConsumerWidget {
+  NormalScreen({super.key});
   String? password = 'Generate Password';
   PasswordGenerator passwordGenerator = PasswordGenerator();
 
@@ -98,7 +99,7 @@ class RiverpodNormalScreen extends ConsumerWidget {
                               height: 10,
                             ),
                             Container(
-                              height: 75,
+                              height: 70,
                               width: containerWidth,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
@@ -130,7 +131,7 @@ class RiverpodNormalScreen extends ConsumerWidget {
                               ),
                             ),
                             const SizedBox(
-                              height: 25,
+                              height: 10,
                             ),
                             Row(children: [
                               GestureDetector(
@@ -294,7 +295,7 @@ class RiverpodNormalScreen extends ConsumerWidget {
               ),
               //SETTINGS
               Container(
-                height: containerHeight * 0.40,
+                height: containerHeight * 0.45,
                 width: containerWidth,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -352,7 +353,7 @@ class RiverpodNormalScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(
-                height: 60,
+                height: 40,
               ),
               BouncingButton(
                 onTap: () {
@@ -385,6 +386,11 @@ class RiverpodNormalScreen extends ConsumerWidget {
                             includeCharacters: characterSwitchValue,
                             includeSymbols: specialCharacterSwitchValue));
                   }
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              NormalGeneratedPasswordScren()));
                 },
                 text: 'Generate Password',
                 color: Colors.purple,
