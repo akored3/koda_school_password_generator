@@ -10,6 +10,10 @@ class PasswordProvider extends StateNotifier<String?> {
   void resetPassword() {
     state = 'Generate password....';
   }
+
+  String tellToMoveSlider() {
+    return state = 'move the slider to generate a password😒';
+  }
 }
 
 final passwordProvider = StateNotifierProvider<PasswordProvider, String?>(

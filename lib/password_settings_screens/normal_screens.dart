@@ -359,8 +359,10 @@ class NormalScreen extends ConsumerWidget {
                 onTap: () {
                   if (firstSliderColor == grey &&
                       secondSliderColor == grey &&
-                      thirdSliderColor == grey) {
-                    password = ref.watch(passwordProvider);
+                      thirdSliderColor == grey &&
+                      password == ref.watch(passwordProvider)) {
+                    password =
+                        ref.watch(passwordProvider.notifier).tellToMoveSlider();
                   } else if (firstSliderColor == redShade &&
                       secondSliderColor == grey &&
                       thirdSliderColor == grey) {
