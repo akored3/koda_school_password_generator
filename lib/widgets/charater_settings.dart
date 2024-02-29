@@ -71,13 +71,19 @@ class CharacterSettingsPartTwo extends StatelessWidget {
   final String innerContainerText;
   final String characterName;
   final bool switchValue;
-  final Function turnOnSwitch;
+  final Function(bool) turnOnSwitch;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: containerColor, borderRadius: BorderRadius.circular(15)),
+        color: containerColor,
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(
+          color: grey,
+          width: 0.35,
+        ),
+      ),
       width: containerWidth,
       height: containerHeight,
       child: Padding(
@@ -96,7 +102,13 @@ class CharacterSettingsPartTwo extends StatelessWidget {
                   width: innerContainerWidth,
                   height: innerContainerHeight,
                   child: Center(
-                    child: Text(innerContainerText),
+                    child: Text(
+                      innerContainerText,
+                      style: TextStyle(
+                          color: white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -112,15 +124,15 @@ class CharacterSettingsPartTwo extends StatelessWidget {
               children: [
                 Text(characterName),
                 const SizedBox(
-                  width: 50,
+                  width: 15,
                 ),
                 Transform.scale(
                   scale: 0.6,
                   child: CupertinoSwitch(
                       value: switchValue,
-                      activeColor: purple,
+                      activeColor: deepBlueShade,
                       onChanged: (value) {
-                        turnOnSwitch();
+                        turnOnSwitch(value);
                       }),
                 ),
               ],

@@ -12,6 +12,7 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
   PasswordGenerator passwordGenerator = PasswordGenerator();
 
   String? generatedPassword;
+  // bool newDigitSwitchValue = false;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -222,26 +223,48 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                     CharacterSettingsPartTwo(
                       containerHeight: 130,
                       containerWidth: containerWidth * 0.48,
-                      containerColor: blueShade,
-                      innerContainerWidth: 65,
+                      containerColor: digitSwitchValue ? blueShade : white,
+                      innerContainerWidth: 70,
                       innerContainerHeight: 45,
-                      innerContainerColor: deepBlueShade,
+                      innerContainerColor:
+                          digitSwitchValue ? deepBlueShade : grey,
                       innerContainerText: '123',
                       characterName: 'Digits',
-                      switchValue: false,
-                      turnOnSwitch: () {},
+                      switchValue: digitSwitchValue,
+                      turnOnSwitch: (newSwitchValue) {
+                        newSwitchValue = digitSwitchValue;
+                        if (newSwitchValue != false) {
+                          final switchNotifier =
+                              ref.watch(digitSwitchProvider.notifier);
+                          switchNotifier.toggleDigitSwitchAgain();
+                          ref.read(passwordProvider.notifier).removeDigit(
+                              passwordGenerator
+                                  .removeDigits(generatedPassword ?? ''));
+                        } else {
+                          final switchNotifier =
+                              ref.watch(digitSwitchProvider.notifier);
+                          switchNotifier.toggleDigitSwitch();
+                        }
+                      },
                     ),
                     CharacterSettingsPartTwo(
                       containerHeight: 130,
                       containerWidth: containerWidth * 0.48,
                       containerColor: blueShade,
-                      innerContainerWidth: 65,
+                      innerContainerWidth: 70,
                       innerContainerHeight: 45,
                       innerContainerColor: deepBlueShade,
-                      innerContainerText: 'Abc',
+                      innerContainerText: 'ABC',
                       characterName: 'Characters',
-                      switchValue: false,
-                      turnOnSwitch: () {},
+                      switchValue: characterSwitchValue,
+                      turnOnSwitch: (newSwitchValue) {
+                        newSwitchValue = characterSwitchValue;
+                        if (newSwitchValue != false) {
+                          final switchValue = ref
+                              .watch(characterSwitchProvider.notifier)
+                              .toggleCharacterSwitch();
+                        }
+                      },
                     ),
                   ],
                 ),

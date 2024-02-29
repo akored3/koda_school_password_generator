@@ -7,6 +7,18 @@ class PasswordProvider extends StateNotifier<String?> {
     return state = newText;
   }
 
+  String removeDigit(String newText) {
+    return state = newText;
+  }
+
+  String includeDigitsAgain(String newText) {
+    return state = newText;
+  }
+
+  String removeCharacters(String newText) {
+    return state = newText;
+  }
+
   void resetPassword() {
     state = 'Generate password....';
   }

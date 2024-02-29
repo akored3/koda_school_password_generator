@@ -62,13 +62,21 @@ class PasswordGenerator {
 
     if (includeCharacters) {
       characterSet += _lowercaseChars + _uppercaseChars;
+    } else if (!includeCharacters) {
+      characterSet =
+          characterSet.replaceAll(_lowercaseChars + _uppercaseChars, '');
     }
 
     if (includeDigits) {
       characterSet += _numericChars;
+    } else if (!includeDigits) {
+      characterSet = characterSet.replaceAll(_numericChars, '');
     }
+
     if (includeSymbols) {
       characterSet += _specialChars;
+    } else if (!includeSymbols) {
+      characterSet = characterSet.replaceAll(_specialChars, '');
     }
 
     for (int i = 0; i < length; i++) {
@@ -80,5 +88,14 @@ class PasswordGenerator {
       }
     }
     return password.toString();
+  }
+
+  String removeDigits(String input) {
+    bool isDigit(String char) {
+      final codeUnit = char.codeUnitAt(0);
+      return codeUnit >= 48 && codeUnit <= 57;
+    }
+
+    return input.split('').where((char) => !isDigit(char)).join();
   }
 }
