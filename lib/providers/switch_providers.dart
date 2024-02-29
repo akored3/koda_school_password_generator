@@ -20,6 +20,8 @@ class SpecialCharacterSwitch extends StateNotifier<bool> {
   SpecialCharacterSwitch() : super(false);
 
   bool toggleSpecialCharacterSwitch() => state = !state;
+
+  bool toggleSpecialCharacterSwitchAgain() => state = false;
 }
 
 final digitSwitchProvider =

@@ -69,7 +69,7 @@ class CharacterSettingsPartTwo extends StatelessWidget {
   final Color containerColor;
   final Color innerContainerColor;
   final String innerContainerText;
-  final String characterName;
+  final Widget characterName;
   final bool switchValue;
   final Function(bool) turnOnSwitch;
 
@@ -122,7 +122,7 @@ class CharacterSettingsPartTwo extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(characterName),
+                characterName,
                 const SizedBox(
                   width: 15,
                 ),

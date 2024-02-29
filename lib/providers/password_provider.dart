@@ -19,6 +19,10 @@ class PasswordProvider extends StateNotifier<String?> {
     return state = newText;
   }
 
+  String removeSymbols(String newText) {
+    return state = newText;
+  }
+
   void resetPassword() {
     state = 'Generate password....';
   }

@@ -45,7 +45,7 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
         elevation: 0.5,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: LayoutBuilder(
           builder: (context, constraints) {
             double containerWidth = constraints.maxWidth;
@@ -53,9 +53,9 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
 
             return Column(
               children: [
-                const SizedBox(
-                  height: 20,
-                ),
+                // const SizedBox(
+                //   height: 5,
+                // ),
                 Container(
                   height: containerHeight * 0.30,
                   width: containerWidth,
@@ -77,7 +77,7 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -216,7 +216,7 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                             )),
                       )
                     ]),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -229,7 +229,14 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                       innerContainerColor:
                           digitSwitchValue ? deepBlueShade : grey,
                       innerContainerText: '123',
-                      characterName: 'Digits',
+                      characterName: Text(
+                        'Digits',
+                        style: TextStyle(
+                          color: digitSwitchValue ? white : grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
                       switchValue: digitSwitchValue,
                       turnOnSwitch: (newSwitchValue) {
                         newSwitchValue = digitSwitchValue;
@@ -250,24 +257,87 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                     CharacterSettingsPartTwo(
                       containerHeight: 130,
                       containerWidth: containerWidth * 0.48,
-                      containerColor: blueShade,
+                      containerColor: characterSwitchValue ? blueShade : white,
                       innerContainerWidth: 70,
                       innerContainerHeight: 45,
-                      innerContainerColor: deepBlueShade,
+                      innerContainerColor:
+                          characterSwitchValue ? deepBlueShade : grey,
                       innerContainerText: 'ABC',
-                      characterName: 'Characters',
+                      characterName: Text(
+                        'Characters',
+                        style: TextStyle(
+                          color: characterSwitchValue ? white : grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
+                      ),
                       switchValue: characterSwitchValue,
                       turnOnSwitch: (newSwitchValue) {
                         newSwitchValue = characterSwitchValue;
                         if (newSwitchValue != false) {
-                          final switchValue = ref
-                              .watch(characterSwitchProvider.notifier)
-                              .toggleCharacterSwitch();
+                          final switchNotifier =
+                              ref.watch(characterSwitchProvider.notifier);
+                          switchNotifier.toggleCharacterSwitchAgain();
+                          ref.read(passwordProvider.notifier).removeCharacters(
+                              passwordGenerator
+                                  .removeLetters(generatedPassword ?? ''));
+                        } else {
+                          final switchNotifier =
+                              ref.watch(characterSwitchProvider.notifier);
+                          switchNotifier.toggleCharacterSwitch();
                         }
                       },
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CharacterSettingsPartTwo(
+                      containerHeight: 130,
+                      containerWidth: containerWidth * 0.48,
+                      containerColor:
+                          specialCharacterSwitchValue ? blueShade : white,
+                      innerContainerWidth: 70,
+                      innerContainerHeight: 45,
+                      innerContainerColor:
+                          specialCharacterSwitchValue ? deepBlueShade : grey,
+                      innerContainerText: '@#!',
+                      characterName: Text(
+                        'Symbols',
+                        style: TextStyle(
+                          color: specialCharacterSwitchValue ? white : grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                      switchValue: specialCharacterSwitchValue,
+                      turnOnSwitch: (newSwitchValue) {
+                        newSwitchValue = specialCharacterSwitchValue;
+                        if (newSwitchValue != false) {
+                          final switchNotifier = ref
+                              .watch(specialCharacterSwitchProvider.notifier);
+                          switchNotifier.toggleSpecialCharacterSwitchAgain();
+                        } else {
+                          final switchNotifier = ref
+                              .watch(specialCharacterSwitchProvider.notifier);
+                          switchNotifier.toggleSpecialCharacterSwitch();
+                        }
+                      },
+                    ),
+                    const SizedBox(
+                      width: 48,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+
+                const Row(),
               ],
             );
           },
