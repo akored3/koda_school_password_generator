@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:password_generator/constants.dart';
 import 'package:password_generator/providers/password_provider.dart';
 import 'package:password_generator/providers/slider_providers.dart';
 import 'package:password_generator/providers/switch_providers.dart';
 import 'package:password_generator/service/password_generator.dart';
+import 'package:password_generator/widgets/bottom_menus.dart';
 import 'package:password_generator/widgets/charater_settings.dart';
 
 class NormalGeneratedPasswordScren extends ConsumerWidget {
@@ -334,10 +336,56 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 40,
                 ),
 
-                const Row(),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      BottomMenu(
+                        containerWidth: 55,
+                        containerHeight: 55,
+                        borderRadius: 30,
+                        menuName: 'Copy',
+                        icon: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.copy_rounded,
+                            color: white,
+                          ),
+                        ),
+                      ),
+                      BottomMenu(
+                        containerWidth: 75,
+                        containerHeight: 75,
+                        borderRadius: 45,
+                        menuName: 'Generate',
+                        icon: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.auto_fix_high_rounded,
+                            color: white,
+                            size: 35,
+                          ),
+                        ),
+                      ),
+                      BottomMenu(
+                        containerWidth: 55,
+                        containerHeight: 55,
+                        borderRadius: 30,
+                        menuName: 'Back',
+                        icon: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.replay,
+                            color: white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             );
           },
