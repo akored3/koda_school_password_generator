@@ -384,7 +384,50 @@ class SmallGeneratedPasswordScreen extends ConsumerWidget {
                       containerHeight: 50,
                       borderRadius: 45,
                       icon: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (firstSliderColor == grey &&
+                              secondSliderColor == grey &&
+                              thirdSliderColor == grey &&
+                              generatedPassword ==
+                                  ref.watch(passwordProvider)) {
+                            generatedPassword = ref
+                                .watch(passwordProvider.notifier)
+                                .tellToMoveSlider();
+                          } else if (firstSliderColor == redShade &&
+                              secondSliderColor == grey &&
+                              thirdSliderColor == grey) {
+                            generatedPassword = ref
+                                .read(passwordProvider.notifier)
+                                .showPassword(
+                                    passwordGenerator.generateWeakPassword(
+                                        includeDigits: digitSwitchValue,
+                                        includeCharacters: characterSwitchValue,
+                                        includeSymbols:
+                                            specialCharacterSwitchValue));
+                          } else if (firstSliderColor == orangeShade &&
+                              secondSliderColor == orangeShade &&
+                              thirdSliderColor == grey) {
+                            generatedPassword = ref
+                                .read(passwordProvider.notifier)
+                                .showPassword(
+                                    passwordGenerator.generateMediumPassword(
+                                        includeDigits: digitSwitchValue,
+                                        includeCharacters: characterSwitchValue,
+                                        includeSymbols:
+                                            specialCharacterSwitchValue));
+                          } else if (firstSliderColor == greenShade &&
+                              secondSliderColor == greenShade &&
+                              thirdSliderColor == greenShade) {
+                            generatedPassword = ref
+                                .read(passwordProvider.notifier)
+                                .showPassword(
+                                    passwordGenerator.generateStrongPassword(
+                                        includeDigits: digitSwitchValue,
+                                        includeCharacters: characterSwitchValue,
+                                        includeSymbols:
+                                            specialCharacterSwitchValue));
+                          }
+                        },
                         icon: Icon(
                           Icons.auto_fix_high_rounded,
                           color: white,
