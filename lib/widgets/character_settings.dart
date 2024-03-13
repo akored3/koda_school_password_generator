@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:password_generator/constants.dart';
 
 class CharacterSettings extends StatelessWidget {
@@ -48,19 +49,21 @@ class CharacterSettings extends StatelessWidget {
 }
 
 class CharacterSettingsPartTwo extends StatelessWidget {
-  const CharacterSettingsPartTwo({
-    super.key,
-    required this.containerWidth,
-    required this.containerHeight,
-    required this.innerContainerWidth,
-    required this.innerContainerHeight,
-    required this.containerColor,
-    required this.innerContainerColor,
-    required this.innerContainerText,
-    required this.characterName,
-    required this.switchValue,
-    required this.turnOnSwitch,
-  });
+  const CharacterSettingsPartTwo(
+      {super.key,
+      required this.containerWidth,
+      required this.containerHeight,
+      required this.innerContainerWidth,
+      required this.innerContainerHeight,
+      required this.containerColor,
+      required this.innerContainerColor,
+      required this.innerContainerText,
+      required this.characterName,
+      required this.switchValue,
+      required this.turnOnSwitch,
+      required this.containerPadding,
+      required this.containerHeightSpace,
+      required this.containerWidthSpace});
 
   final double containerWidth;
   final double containerHeight;
@@ -68,10 +71,13 @@ class CharacterSettingsPartTwo extends StatelessWidget {
   final double innerContainerHeight;
   final Color containerColor;
   final Color innerContainerColor;
-  final String innerContainerText;
   final Widget characterName;
+  final Widget innerContainerText;
   final bool switchValue;
   final Function(bool) turnOnSwitch;
+  final double containerPadding;
+  final double containerHeightSpace;
+  final double containerWidthSpace;
 
   @override
   Widget build(BuildContext context) {
@@ -87,9 +93,9 @@ class CharacterSettingsPartTwo extends StatelessWidget {
       width: containerWidth,
       height: containerHeight,
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: EdgeInsets.only(top: containerPadding, left: containerPadding),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,13 +108,7 @@ class CharacterSettingsPartTwo extends StatelessWidget {
                   width: innerContainerWidth,
                   height: innerContainerHeight,
                   child: Center(
-                    child: Text(
-                      innerContainerText,
-                      style: TextStyle(
-                          color: white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20),
-                    ),
+                    child: innerContainerText,
                   ),
                 ),
                 const SizedBox(
@@ -116,18 +116,17 @@ class CharacterSettingsPartTwo extends StatelessWidget {
                 )
               ],
             ),
-            const SizedBox(
-              height: 25,
+            SizedBox(
+              height: containerHeightSpace,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 characterName,
-                const SizedBox(
-                  width: 15,
+                SizedBox(
+                  width: containerWidthSpace,
                 ),
                 Transform.scale(
-                  scale: 0.6,
+                  scale: 0.45,
                   child: CupertinoSwitch(
                       value: switchValue,
                       activeColor: deepBlueShade,

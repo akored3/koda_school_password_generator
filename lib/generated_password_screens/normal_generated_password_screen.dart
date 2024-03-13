@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:password_generator/constants.dart';
 import 'package:password_generator/providers/password_provider.dart';
@@ -7,14 +6,13 @@ import 'package:password_generator/providers/slider_providers.dart';
 import 'package:password_generator/providers/switch_providers.dart';
 import 'package:password_generator/service/password_generator.dart';
 import 'package:password_generator/widgets/bottom_menus.dart';
-import 'package:password_generator/widgets/charater_settings.dart';
+import 'package:password_generator/widgets/character_settings.dart';
 
 class NormalGeneratedPasswordScren extends ConsumerWidget {
   NormalGeneratedPasswordScren({super.key});
   PasswordGenerator passwordGenerator = PasswordGenerator();
 
   String? generatedPassword;
-  // bool newDigitSwitchValue = false;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -55,9 +53,6 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
 
             return Column(
               children: [
-                // const SizedBox(
-                //   height: 5,
-                // ),
                 Container(
                   height: containerHeight * 0.30,
                   width: containerWidth,
@@ -224,13 +219,22 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                   children: [
                     CharacterSettingsPartTwo(
                       containerHeight: 130,
-                      containerWidth: containerWidth * 0.48,
+                      containerWidth: containerWidth * 0.49,
+                      containerPadding: 10.0,
+                      containerHeightSpace: 35,
+                      containerWidthSpace: 55,
                       containerColor: digitSwitchValue ? blueShade : white,
                       innerContainerWidth: 70,
                       innerContainerHeight: 45,
                       innerContainerColor:
                           digitSwitchValue ? deepBlueShade : grey,
-                      innerContainerText: '123',
+                      innerContainerText: const Text(
+                        '123',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
                       characterName: Text(
                         'Digits',
                         style: TextStyle(
@@ -258,19 +262,28 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                     ),
                     CharacterSettingsPartTwo(
                       containerHeight: 130,
-                      containerWidth: containerWidth * 0.48,
+                      containerWidth: containerWidth * 0.49,
+                      containerPadding: 10.0,
+                      containerHeightSpace: 35,
+                      containerWidthSpace: 40,
                       containerColor: characterSwitchValue ? blueShade : white,
                       innerContainerWidth: 70,
                       innerContainerHeight: 45,
                       innerContainerColor:
                           characterSwitchValue ? deepBlueShade : grey,
-                      innerContainerText: 'ABC',
+                      innerContainerText: const Text(
+                        'Abc',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
                       characterName: Text(
                         'Characters',
                         style: TextStyle(
                           color: characterSwitchValue ? white : grey,
                           fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                          fontSize: 12,
                         ),
                       ),
                       switchValue: characterSwitchValue,
@@ -300,14 +313,23 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                   children: [
                     CharacterSettingsPartTwo(
                       containerHeight: 130,
-                      containerWidth: containerWidth * 0.48,
+                      containerWidth: containerWidth * 0.49,
+                      containerPadding: 10.0,
+                      containerHeightSpace: 35,
+                      containerWidthSpace: 40,
                       containerColor:
                           specialCharacterSwitchValue ? blueShade : white,
                       innerContainerWidth: 70,
                       innerContainerHeight: 45,
                       innerContainerColor:
                           specialCharacterSwitchValue ? deepBlueShade : grey,
-                      innerContainerText: '@#!',
+                      innerContainerText: const Text(
+                        '@#!',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20),
+                      ),
                       characterName: Text(
                         'Symbols',
                         style: TextStyle(
@@ -338,7 +360,6 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                 const SizedBox(
                   height: 40,
                 ),
-
                 Expanded(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -347,9 +368,11 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                         containerWidth: 55,
                         containerHeight: 55,
                         borderRadius: 30,
-                        menuName: 'Copy',
                         icon: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            passwordGenerator
+                                .copyToClipboard(generatedPassword ?? '');
+                          },
                           icon: Icon(
                             Icons.copy_rounded,
                             color: white,
@@ -360,7 +383,6 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                         containerWidth: 75,
                         containerHeight: 75,
                         borderRadius: 45,
-                        menuName: 'Generate',
                         icon: IconButton(
                           onPressed: () {},
                           icon: Icon(
@@ -374,9 +396,10 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                         containerWidth: 55,
                         containerHeight: 55,
                         borderRadius: 30,
-                        menuName: 'Back',
                         icon: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           icon: Icon(
                             Icons.replay,
                             color: white,
@@ -386,6 +409,29 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                     ],
                   ),
                 ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      width: 1,
+                    ),
+                    Text('Copy'),
+                    SizedBox(
+                      width: 0.5,
+                    ),
+                    Text('Generate'),
+                    SizedBox(
+                      width: 0.5,
+                    ),
+                    Text('Back'),
+                    SizedBox(
+                      width: 1,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
+                )
               ],
             );
           },

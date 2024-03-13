@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:password_generator/constants.dart';
-import 'package:password_generator/generated_password_screens/normal_generated_password_screen.dart';
 import 'package:password_generator/providers/password_provider.dart';
 import 'package:password_generator/providers/slider_providers.dart';
 import 'package:password_generator/providers/switch_providers.dart';
 import 'package:password_generator/service/password_generator.dart';
 import 'package:password_generator/utils/button.dart';
-import 'package:password_generator/widgets/charater_settings.dart';
+import 'package:password_generator/views/generated_password_view.dart';
+import 'package:password_generator/widgets/character_settings.dart';
 
 class NormalScreen extends ConsumerWidget {
   NormalScreen({super.key});
@@ -391,8 +391,7 @@ class NormalScreen extends ConsumerWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              NormalGeneratedPasswordScren()));
+                          builder: (context) => const GeneratedPasswordView()));
                 },
                 text: 'Generate Password',
                 color: Colors.purple,

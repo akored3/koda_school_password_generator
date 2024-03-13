@@ -6,7 +6,6 @@ class BottomMenu extends StatelessWidget {
     super.key,
     required this.containerWidth,
     required this.containerHeight,
-    required this.menuName,
     required this.borderRadius,
     required this.icon,
   });
@@ -14,7 +13,6 @@ class BottomMenu extends StatelessWidget {
   final double containerWidth;
   final double containerHeight;
   final double borderRadius;
-  final String menuName;
   final Widget icon;
 
   @override
@@ -34,12 +32,6 @@ class BottomMenu extends StatelessWidget {
               ),
               child: Center(
                 child: icon,
-              ),
-            ),
-            Text(
-              menuName,
-              style: TextStyle(
-                color: blueShade,
               ),
             ),
           ],

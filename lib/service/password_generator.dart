@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:flutter/services.dart';
+
 class PasswordGenerator {
   static const _lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
   static const _uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -110,5 +112,13 @@ class PasswordGenerator {
       }
     }
     return result;
+  }
+
+  void copyToClipboard(String text) {
+    // Copy the text to the clipboard
+    Clipboard.setData(ClipboardData(text: text));
+
+    // Optionally, show a toast or snackbar to indicate that the text has been copied
+    // Example: ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Text copied to clipboard')));
   }
 }

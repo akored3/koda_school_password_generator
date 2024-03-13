@@ -10,7 +10,7 @@ class GeneratedPasswordView extends StatelessWidget {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         if (constraints.maxHeight < 600) {
-          return const SmallGeneratedPasswordScreen();
+          return SmallGeneratedPasswordScreen();
         } else {
           return NormalGeneratedPasswordScren();
         }
