@@ -48,8 +48,8 @@ class CharacterSettings extends StatelessWidget {
   }
 }
 
-class CharacterSettingsPartTwo extends StatelessWidget {
-  const CharacterSettingsPartTwo(
+class GeneratedCharacterSettings extends StatelessWidget {
+  const GeneratedCharacterSettings(
       {super.key,
       required this.containerWidth,
       required this.containerHeight,

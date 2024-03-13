@@ -218,7 +218,7 @@ class SmallGeneratedPasswordScreen extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CharacterSettingsPartTwo(
+                    GeneratedCharacterSettings(
                       containerHeight: 90,
                       containerWidth: containerWidth * 0.49,
                       containerPadding: 5.0,
@@ -261,7 +261,7 @@ class SmallGeneratedPasswordScreen extends ConsumerWidget {
                         }
                       },
                     ),
-                    CharacterSettingsPartTwo(
+                    GeneratedCharacterSettings(
                       containerHeight: 90,
                       containerWidth: containerWidth * 0.49,
                       containerPadding: 5.0,
@@ -312,7 +312,7 @@ class SmallGeneratedPasswordScreen extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CharacterSettingsPartTwo(
+                    GeneratedCharacterSettings(
                       containerHeight: 90,
                       containerWidth: containerWidth * 0.49,
                       containerPadding: 5.0,

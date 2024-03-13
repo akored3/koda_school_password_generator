@@ -217,7 +217,7 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CharacterSettingsPartTwo(
+                    GeneratedCharacterSettings(
                       containerHeight: 130,
                       containerWidth: containerWidth * 0.49,
                       containerPadding: 10.0,
@@ -260,7 +260,7 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                         }
                       },
                     ),
-                    CharacterSettingsPartTwo(
+                    GeneratedCharacterSettings(
                       containerHeight: 130,
                       containerWidth: containerWidth * 0.49,
                       containerPadding: 10.0,
@@ -311,7 +311,7 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CharacterSettingsPartTwo(
+                    GeneratedCharacterSettings(
                       containerHeight: 130,
                       containerWidth: containerWidth * 0.49,
                       containerPadding: 10.0,

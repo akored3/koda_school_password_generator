@@ -121,7 +121,10 @@ class NormalScreen extends ConsumerWidget {
                                             color: grey, fontSize: 12),
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          passwordGenerator
+                                              .copyToClipboard(password ?? '');
+                                        },
                                         icon: const Icon(Icons.copy),
                                         color: grey,
                                       )
