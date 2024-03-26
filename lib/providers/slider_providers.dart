@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:password_generator/constants.dart';
 
-class FirstSlider extends StateNotifier<Color> {
-  FirstSlider() : super(grey);
+class FirstSliderNotifier extends StateNotifier<Color> {
+  FirstSliderNotifier() : super(grey);
   void changeColor(Color newColor) {
     state = newColor;
   }
@@ -14,8 +14,8 @@ class FirstSlider extends StateNotifier<Color> {
   }
 }
 
-class SecondSlider extends StateNotifier<Color> {
-  SecondSlider() : super(grey);
+class SecondSliderNotifier extends StateNotifier<Color> {
+  SecondSliderNotifier() : super(grey);
   void changeColor(Color newColor) {
     state = newColor;
   }
@@ -25,8 +25,8 @@ class SecondSlider extends StateNotifier<Color> {
   }
 }
 
-class ThirdSlider extends StateNotifier<Color> {
-  ThirdSlider() : super(grey);
+class ThirdSliderNotifier extends StateNotifier<Color> {
+  ThirdSliderNotifier() : super(grey);
   void changeColor(Color newColor) {
     state = newColor;
   }
@@ -36,11 +36,11 @@ class ThirdSlider extends StateNotifier<Color> {
   }
 }
 
-final firstSliderProvider =
-    StateNotifierProvider<FirstSlider, Color>((ref) => FirstSlider());
+final firstSliderProvider = StateNotifierProvider<FirstSliderNotifier, Color>(
+    (ref) => FirstSliderNotifier());
 
-final secondSliderProvider =
-    StateNotifierProvider<SecondSlider, Color>((ref) => SecondSlider());
+final secondSliderProvider = StateNotifierProvider<SecondSliderNotifier, Color>(
+    (ref) => SecondSliderNotifier());
 
-final thirdSliderProvider =
-    StateNotifierProvider<ThirdSlider, Color>((ref) => ThirdSlider());
+final thirdSliderProvider = StateNotifierProvider<ThirdSliderNotifier, Color>(
+    (ref) => ThirdSliderNotifier());
