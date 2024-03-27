@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:password_generator/constants.dart';
 
-class CorrectCard extends StatelessWidget {
-  const CorrectCard({
+//How do I include a function that turns on the switch on each cards??
+class CharacterSettingsCard extends StatelessWidget {
+  const CharacterSettingsCard({
     super.key,
     required this.details,
   });
@@ -40,7 +41,6 @@ class CorrectCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(details.secondTitle ?? ''),
-              details.switchButton,
             ],
           ),
         ],
@@ -51,52 +51,32 @@ class CorrectCard extends StatelessWidget {
 
 class CardDetails {
   final String? firstTitle, secondTitle;
-  final Widget switchButton;
   final Icon? icon;
 
   CardDetails({
     this.firstTitle,
     this.secondTitle,
-    required this.switchButton,
     this.icon,
   });
 }
 
 final detailsList = [
   CardDetails(
-      firstTitle: '123',
-      secondTitle: 'Digits',
-      switchButton: Transform.scale(
-        scale: 0.8,
-        child: CupertinoSwitch(
-          value: false,
-          onChanged: (value) {},
-        ),
-      )),
+    firstTitle: '123',
+    secondTitle: 'Digits',
+  ),
   CardDetails(
-      firstTitle: 'ABC',
-      secondTitle: 'Characters',
-      switchButton: Transform.scale(
-        scale: 0.8,
-        child: CupertinoSwitch(
-          value: false,
-          onChanged: (value) {},
-        ),
-      )),
+    firstTitle: 'ABC',
+    secondTitle: 'Characters',
+  ),
   CardDetails(
-      firstTitle: '@#!',
-      secondTitle: 'Symbols',
-      switchButton: Transform.scale(
-        scale: 0.8,
-        child: CupertinoSwitch(
-          value: false,
-          onChanged: (value) {},
-        ),
-      )),
+    firstTitle: '@#!',
+    secondTitle: 'Symbols',
+  ),
 ];
 
-class CharacterSettingsGridView extends StatelessWidget {
-  const CharacterSettingsGridView({
+class CharacterSettingsGridCard extends StatelessWidget {
+  const CharacterSettingsGridCard({
     super.key,
     required this.crossAxisCount,
   });
@@ -115,7 +95,8 @@ class CharacterSettingsGridView extends StatelessWidget {
         mainAxisSpacing: 10,
         childAspectRatio: 1.4,
       ),
-      itemBuilder: (context, index) => CorrectCard(details: detailsList[index]),
+      itemBuilder: (context, index) =>
+          CharacterSettingsCard(details: detailsList[index]),
     );
   }
 }

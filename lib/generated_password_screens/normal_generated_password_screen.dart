@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:password_generator/constants.dart';
-import 'package:password_generator/correct_card.dart';
 import 'package:password_generator/providers/password_provider.dart';
 import 'package:password_generator/providers/slider_providers.dart';
 import 'package:password_generator/providers/switch_providers.dart';
@@ -234,154 +233,153 @@ class NormalGeneratedPasswordScren extends ConsumerWidget {
                           )
                         ]),
                     const SizedBox(height: 10),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     GeneratedCharacterSettings(
-                    //       containerHeight: 130,
-                    //       containerWidth: containerWidth * 0.49,
-                    //       containerPadding: 10.0,
-                    //       containerHeightSpace: 35,
-                    //       containerWidthSpace: 55,
-                    //       containerColor: digitSwitchValue ? blueShade : white,
-                    //       innerContainerWidth: 70,
-                    //       innerContainerHeight: 45,
-                    //       innerContainerColor:
-                    //           digitSwitchValue ? deepBlueShade : grey,
-                    //       innerContainerText: const Text(
-                    //         '123',
-                    //         style: TextStyle(
-                    //             color: Colors.white,
-                    //             fontWeight: FontWeight.bold,
-                    //             fontSize: 20),
-                    //       ),
-                    //       characterName: Text(
-                    //         'Digits',
-                    //         style: TextStyle(
-                    //           color: digitSwitchValue ? white : grey,
-                    //           fontWeight: FontWeight.bold,
-                    //           fontSize: 15,
-                    //         ),
-                    //       ),
-                    //       switchValue: digitSwitchValue,
-                    //       turnOnSwitch: (newSwitchValue) {
-                    //         newSwitchValue = digitSwitchValue;
-                    //         if (newSwitchValue != false) {
-                    //           final switchNotifier =
-                    //               ref.watch(digitSwitchProvider.notifier);
-                    //           switchNotifier.toggleDigitSwitchAgain();
-                    //           ref.read(passwordProvider.notifier).removeDigit(
-                    //               passwordGenerator
-                    //                   .removeDigits(generatedPassword ?? ''));
-                    //         } else {
-                    //           final switchNotifier =
-                    //               ref.watch(digitSwitchProvider.notifier);
-                    //           switchNotifier.toggleDigitSwitch();
-                    //         }
-                    //       },
-                    //     ),
-                    //     GeneratedCharacterSettings(
-                    //       containerHeight: 130,
-                    //       containerWidth: containerWidth * 0.49,
-                    //       containerPadding: 10.0,
-                    //       containerHeightSpace: 35,
-                    //       containerWidthSpace: 40,
-                    //       containerColor:
-                    //           characterSwitchValue ? blueShade : white,
-                    //       innerContainerWidth: 70,
-                    //       innerContainerHeight: 45,
-                    //       innerContainerColor:
-                    //           characterSwitchValue ? deepBlueShade : grey,
-                    //       innerContainerText: const Text(
-                    //         'Abc',
-                    //         style: TextStyle(
-                    //             color: Colors.white,
-                    //             fontWeight: FontWeight.bold,
-                    //             fontSize: 20),
-                    //       ),
-                    //       characterName: Text(
-                    //         'Characters',
-                    //         style: TextStyle(
-                    //           color: characterSwitchValue ? white : grey,
-                    //           fontWeight: FontWeight.bold,
-                    //           fontSize: 12,
-                    //         ),
-                    //       ),
-                    //       switchValue: characterSwitchValue,
-                    //       turnOnSwitch: (newSwitchValue) {
-                    //         newSwitchValue = characterSwitchValue;
-                    //         if (newSwitchValue != false) {
-                    //           final switchNotifier =
-                    //               ref.watch(characterSwitchProvider.notifier);
-                    //           switchNotifier.toggleCharacterSwitchAgain();
-                    //           ref
-                    //               .read(passwordProvider.notifier)
-                    //               .removeCharacters(passwordGenerator
-                    //                   .removeLetters(generatedPassword ?? ''));
-                    //         } else {
-                    //           final switchNotifier =
-                    //               ref.watch(characterSwitchProvider.notifier);
-                    //           switchNotifier.toggleCharacterSwitch();
-                    //         }
-                    //       },
-                    //     ),
-                    //   ],
-                    // ),
-                    // const SizedBox(
-                    //   height: 5,
-                    // ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     GeneratedCharacterSettings(
-                    //       containerHeight: 130,
-                    //       containerWidth: containerWidth * 0.49,
-                    //       containerPadding: 10.0,
-                    //       containerHeightSpace: 35,
-                    //       containerWidthSpace: 40,
-                    //       containerColor:
-                    //           specialCharacterSwitchValue ? blueShade : white,
-                    //       innerContainerWidth: 70,
-                    //       innerContainerHeight: 45,
-                    //       innerContainerColor: specialCharacterSwitchValue
-                    //           ? deepBlueShade
-                    //           : grey,
-                    //       innerContainerText: const Text(
-                    //         '@#!',
-                    //         style: TextStyle(
-                    //             color: Colors.white,
-                    //             fontWeight: FontWeight.bold,
-                    //             fontSize: 20),
-                    //       ),
-                    //       characterName: Text(
-                    //         'Symbols',
-                    //         style: TextStyle(
-                    //           color: specialCharacterSwitchValue ? white : grey,
-                    //           fontWeight: FontWeight.bold,
-                    //           fontSize: 15,
-                    //         ),
-                    //       ),
-                    //       switchValue: specialCharacterSwitchValue,
-                    //       turnOnSwitch: (newSwitchValue) {
-                    //         newSwitchValue = specialCharacterSwitchValue;
-                    //         if (newSwitchValue != false) {
-                    //           final switchNotifier = ref.watch(
-                    //               specialCharacterSwitchProvider.notifier);
-                    //           switchNotifier
-                    //               .toggleSpecialCharacterSwitchAgain();
-                    //         } else {
-                    //           final switchNotifier = ref.watch(
-                    //               specialCharacterSwitchProvider.notifier);
-                    //           switchNotifier.toggleSpecialCharacterSwitch();
-                    //         }
-                    //       },
-                    //     ),
-                    //     const SizedBox(
-                    //       width: 48,
-                    //     ),
-                    //   ],
-                    // ),
-                    const CharacterSettingsGridView(crossAxisCount: 2),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GeneratedCharacterSettings(
+                          containerHeight: 130,
+                          containerWidth: containerWidth * 0.49,
+                          containerPadding: 10.0,
+                          containerHeightSpace: 35,
+                          containerWidthSpace: 55,
+                          containerColor: digitSwitchValue ? blueShade : white,
+                          innerContainerWidth: 70,
+                          innerContainerHeight: 45,
+                          innerContainerColor:
+                              digitSwitchValue ? deepBlueShade : grey,
+                          innerContainerText: const Text(
+                            '123',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                          characterName: Text(
+                            'Digits',
+                            style: TextStyle(
+                              color: digitSwitchValue ? white : grey,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          switchValue: digitSwitchValue,
+                          turnOnSwitch: (newSwitchValue) {
+                            newSwitchValue = digitSwitchValue;
+                            if (newSwitchValue != false) {
+                              final switchNotifier =
+                                  ref.watch(digitSwitchProvider.notifier);
+                              switchNotifier.toggleDigitSwitchAgain();
+                              ref.read(passwordProvider.notifier).removeDigit(
+                                  passwordGenerator
+                                      .removeDigits(generatedPassword ?? ''));
+                            } else {
+                              final switchNotifier =
+                                  ref.watch(digitSwitchProvider.notifier);
+                              switchNotifier.toggleDigitSwitch();
+                            }
+                          },
+                        ),
+                        GeneratedCharacterSettings(
+                          containerHeight: 130,
+                          containerWidth: containerWidth * 0.49,
+                          containerPadding: 10.0,
+                          containerHeightSpace: 35,
+                          containerWidthSpace: 40,
+                          containerColor:
+                              characterSwitchValue ? blueShade : white,
+                          innerContainerWidth: 70,
+                          innerContainerHeight: 45,
+                          innerContainerColor:
+                              characterSwitchValue ? deepBlueShade : grey,
+                          innerContainerText: const Text(
+                            'Abc',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                          characterName: Text(
+                            'Characters',
+                            style: TextStyle(
+                              color: characterSwitchValue ? white : grey,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                            ),
+                          ),
+                          switchValue: characterSwitchValue,
+                          turnOnSwitch: (newSwitchValue) {
+                            newSwitchValue = characterSwitchValue;
+                            if (newSwitchValue != false) {
+                              final switchNotifier =
+                                  ref.watch(characterSwitchProvider.notifier);
+                              switchNotifier.toggleCharacterSwitchAgain();
+                              ref
+                                  .read(passwordProvider.notifier)
+                                  .removeCharacters(passwordGenerator
+                                      .removeLetters(generatedPassword ?? ''));
+                            } else {
+                              final switchNotifier =
+                                  ref.watch(characterSwitchProvider.notifier);
+                              switchNotifier.toggleCharacterSwitch();
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GeneratedCharacterSettings(
+                          containerHeight: 130,
+                          containerWidth: containerWidth * 0.49,
+                          containerPadding: 10.0,
+                          containerHeightSpace: 35,
+                          containerWidthSpace: 40,
+                          containerColor:
+                              specialCharacterSwitchValue ? blueShade : white,
+                          innerContainerWidth: 70,
+                          innerContainerHeight: 45,
+                          innerContainerColor: specialCharacterSwitchValue
+                              ? deepBlueShade
+                              : grey,
+                          innerContainerText: const Text(
+                            '@#!',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                          characterName: Text(
+                            'Symbols',
+                            style: TextStyle(
+                              color: specialCharacterSwitchValue ? white : grey,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                          switchValue: specialCharacterSwitchValue,
+                          turnOnSwitch: (newSwitchValue) {
+                            newSwitchValue = specialCharacterSwitchValue;
+                            if (newSwitchValue != false) {
+                              final switchNotifier = ref.watch(
+                                  specialCharacterSwitchProvider.notifier);
+                              switchNotifier
+                                  .toggleSpecialCharacterSwitchAgain();
+                            } else {
+                              final switchNotifier = ref.watch(
+                                  specialCharacterSwitchProvider.notifier);
+                              switchNotifier.toggleSpecialCharacterSwitch();
+                            }
+                          },
+                        ),
+                        const SizedBox(
+                          width: 48,
+                        ),
+                      ],
+                    ),
                     const SizedBox(
                       height: 40,
                     ),
